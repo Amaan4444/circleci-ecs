@@ -134,7 +134,7 @@ workflows:
   build_and_push_image:
     jobs:
       - aws-ecr/build-and-push-image:
-          repo: example
+          repo: test
           tag: latest
           name: Build and Push Docker Image
           # account-url: AWS_ECR_ACCOUNT_URL
