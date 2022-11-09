@@ -9,18 +9,20 @@ workflows:
   build_and_push_image:
     jobs:
       - aws-ecr/build-and-push-image:
+          repo: example
+          tag: latest
+          name: Build and Push Docker Image
           account-url: AWS_ECR_ACCOUNT_URL
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          create-repo: true
-          # Name of dockerfile to use. Defaults to Dockerfile.
-          dockerfile: Dockerfile
-          # AWS_REGION_ENV_VAR_NAME
           region: AWS_DEFAULT_REGION
-          # myECRRepository
-          repo: '${MY_APP_PREFIX}'
-          # myECRRepoTag
-          tag: "$CIRCLE_SHA1"
+          context: wordpress-test
+          create-repo: false
+          dockerfile: Dockerfile
+          registry-id: '292315468855'
+          # no-output-timeout: 20m
+          path: .
+          profile-name: default
       - aws-ecs/deploy-service-update:
           requires:
             - aws-ecr/build-and-push-image
