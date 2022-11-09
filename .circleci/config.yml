@@ -1,35 +1,33 @@
-version: 2.1
+# version: 2.1
 
-orbs:
-  aws-ecr: circleci/aws-ecr@6.2.0
-  # aws-ecs: circleci/aws-ecs@0.0.11
+# orbs:
+#   aws-ecr: circleci/aws-ecr@6.2.0
+#   aws-ecs: circleci/aws-ecs@0.0.11
 
-workflows:
-# Log into AWS, build and push image to Amazon ECR
-  build_and_push_image:
-    jobs:
-      - aws-ecr/build-and-push-image:
-          repo: example
-          tag: latest
-          name: Build and Push Docker Image
-          account-url: AWS_ECR_ACCOUNT_URL
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          region: AWS_DEFAULT_REGION
-          context: wordpress-test
-          create-repo: false
-          dockerfile: Dockerfile
-          registry-id: AWS_ECR_REGISTRY_ID
-          # no-output-timeout: 20m
-          path: .
-          profile-name: default
-      # - aws-ecs/deploy-service-update:
-      #     requires:
-      #       - aws-ecr/build-and-push-image
-      #     aws-region: AWS_DEFAULT_REGION
-      #     family: '${MY_APP_PREFIX}-service'
-      #     cluster-name: '${MY_APP_PREFIX}-cluster'
-      #     container-image-name-updates: 'container=${MY_APP_PREFIX}-service,tag=${CIRCLE_SHA1}'
+# workflows:
+# # Log into AWS, build and push image to Amazon ECR
+#   build_and_push_image:
+#     jobs:
+#       - aws-ecr/build-and-push-image:
+#           account-url: AWS_ECR_ACCOUNT_URL
+#           aws-access-key-id: AWS_ACCESS_KEY_ID
+#           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+#           create-repo: true
+#           # Name of dockerfile to use. Defaults to Dockerfile.
+#           dockerfile: Dockerfile
+#           # AWS_REGION_ENV_VAR_NAME
+#           region: AWS_DEFAULT_REGION
+#           # myECRRepository
+#           repo: '${MY_APP_PREFIX}'
+#           # myECRRepoTag
+#           tag: "$CIRCLE_SHA1"
+#       - aws-ecs/deploy-service-update:
+#           requires:
+#             - aws-ecr/build-and-push-image
+#           aws-region: AWS_DEFAULT_REGION
+#           family: '${MY_APP_PREFIX}-service'
+#           cluster-name: '${MY_APP_PREFIX}-cluster'
+#           container-image-name-updates: 'container=${MY_APP_PREFIX}-service,tag=${CIRCLE_SHA1}'
 
 # version: '2.1'
 # orbs:
@@ -129,31 +127,26 @@ workflows:
 #       repo-scan-on-push: <<parameters.repo-scan-on-push>>
 
 
-
-# version: 2.1
-
-# orbs:
-#   aws-ecr: circleci/aws-ecr@6.15.2
-#   # aws-ecs: circleci/aws-ecs@0.0.11
-
-#   workflows:
-#       build-and-push-image:
-#         jobs:
-#         - aws-ecr/build-and-push-image:
-#             repo: example
-#             tag: latest
-#             name: Build and Push Docker Image
-#             account-url: AWS_ECR_ACCOUNT_URL
-#             aws-access-key-id: AWS_ACCESS_KEY_ID
-#             aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-#             region: AWS_DEFAULT_REGION
-#             context: wordpress-test
-#             create-repo: false
-#             dockerfile: Dockerfile
-#             registry-id: '292315468855'
-#             # no-output-timeout: 20m
-#             path: .
-#             profile-name: default
+version: '2.1'
+orbs:
+  aws-ecr: circleci/aws-ecr@x.y
+workflows:
+  build_and_push_image:
+    jobs:
+      - aws-ecr/build-and-push-image:
+          repo: example
+          tag: latest
+          name: Build and Push Docker Image
+          account-url: AWS_ECR_ACCOUNT_URL
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          region: AWS_DEFAULT_REGION
+          context: wordpress-test
+          create-repo: false
+          dockerfile: Dockerfile
+          # no-output-timeout: 20m
+          path: .
+          profile-name: default
 #           # skip-when-tags-exist: false
 # orbs:
 #   aws-ecr: circleci/aws-ecr@8.1.3
