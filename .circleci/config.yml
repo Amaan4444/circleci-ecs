@@ -154,6 +154,8 @@
 #           # skip-when-tags-exist: false
 orbs:
   aws-ecr: circleci/aws-ecr@8.1.3
+   workflows:
+  build_and_push_image: 
 jobs:
   example-job:
     docker:
@@ -169,7 +171,7 @@ jobs:
           registry-id: '292315468855' 
           repo: example 
 
-workflows:
-  example-workflow:
-    jobs:
-      - example-job
+# workflows:
+#   example-workflow:
+#     jobs:
+#       - example-job
