@@ -134,24 +134,24 @@ orbs:
   aws-ecr: circleci/aws-ecr@6.15.2
   # aws-ecs: circleci/aws-ecs@0.0.11
 
-workflows:
-    example-workflow:
-      jobs:
+  workflows:
+      example-workflow:
+        jobs:
         - aws-ecr/build-and-push-image:
-          repo: example
-          tag: latest
-          name: Build and Push Docker Image
-          account-url: AWS_ECR_ACCOUNT_URL
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          region: AWS_DEFAULT_REGION
-          context: wordpress-test
-          create-repo: false
-          dockerfile: Dockerfile
-          registry-id: '292315468855'
-          # no-output-timeout: 20m
-          path: .
-          profile-name: default
+            repo: example
+            tag: latest
+            name: Build and Push Docker Image
+            account-url: AWS_ECR_ACCOUNT_URL
+            aws-access-key-id: AWS_ACCESS_KEY_ID
+            aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+            region: AWS_DEFAULT_REGION
+            context: wordpress-test
+            create-repo: false
+            dockerfile: Dockerfile
+            registry-id: '292315468855'
+            # no-output-timeout: 20m
+            path: .
+            profile-name: default
           # skip-when-tags-exist: false
 # orbs:
 #   aws-ecr: circleci/aws-ecr@8.1.3
