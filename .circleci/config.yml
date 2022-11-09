@@ -29,35 +29,114 @@
 #           cluster-name: '${MY_APP_PREFIX}-cluster'
 #           container-image-name-updates: 'container=${MY_APP_PREFIX}-service,tag=${CIRCLE_SHA1}'
 
-version: '2.1'
+# version: '2.1'
+# orbs:
+#   aws-ecr: circleci/aws-ecr@6.2.0
+# workflows:
+#   build_and_push_image:
+#     jobs:
+#       - aws-ecr/build-and-push-image:
+#           account-url: AWS_ECR_ACCOUNT_URL
+#           aws-access-key-id: AWS_ACCESS_KEY_ID
+#           # aws-cli-version: latest
+#           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+#           context: myContext
+#           create-repo: true
+#           dockerfile: Dockerfile
+#           executor: aws-ecr/default
+#           extra-build-args: '--compress'
+#           # new-profile-name: newProfileName
+#           # no-output-timeout: 20m
+#           path: pathToMyDockerfile
+#           # platform: linux/amd64
+#           profile-name: myProfileName
+#           # public-registry: false
+#           # push-image: true
+#           region: AWS_DEFAULT_REGION
+#           # registry-id: AWS_ECR_REGISTRY_ID
+#           repo: example
+#           # repo-scan-on-push: true
+#           # role-arn: 'arn:aws:iam::123456789012:role/testing'
+#           # skip-when-tags-exist: false
+#           # source-profile: sourceProfileName
+#           tag: 'latest,myECRRepoTag'
+
+
+
+#  version: '2.1'
+# orbs:
+#   aws-ecr: circleci/aws-ecr@6.2.0
+# workflows:
+#   build_and_push_image:
+#     jobs:
+#       - aws-ecr/build-and-push-image:
+#           account-url: AWS_ECR_ACCOUNT_URL
+#           aws-access-key-id: AWS_ACCESS_KEY_ID
+#           # aws-cli-version: latest
+#           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+#           context: myContext
+#           create-repo: true
+#           dockerfile: Dockerfile
+#           executor: aws-ecr/default
+#           extra-build-args: '--compress'
+#           # new-profile-name: newProfileName
+#           # no-output-timeout: 20m
+#           path: pathToMyDockerfile
+#           # platform: linux/amd64
+#           profile-name: myProfileName
+#           # public-registry: false
+#           # push-image: true
+#           region: AWS_DEFAULT_REGION
+#           # registry-id: AWS_ECR_REGISTRY_ID
+#           repo: example
+#           # repo-scan-on-push: true
+#           # role-arn: 'arn:aws:iam::123456789012:role/testing'
+#           # skip-when-tags-exist: false
+#           # source-profile: sourceProfileName
+#           tag: 'latest,myECRRepoTag'
+
+
+
+
+# steps:
+#   - build-and-push-image:
+#       assume-web-identity: <<parameters.assume-web-identity>>
+#       attach-workspace: <<parameters.attach-workspace>>
+#       aws-access-key-id: <<parameters.aws-access-key-id>>
+#       aws-cli-version: <<parameters.aws-cli-version>>
+#       aws-secret-access-key: <<parameters.aws-secret-access-key>>
+#       create-repo: <<parameters.create-repo>>
+#       docker-login: <<parameters.docker-login>>
+#       dockerfile: <<parameters.dockerfile>>
+#       dockerhub-password: <<parameters.dockerhub-password>>
+#       dockerhub-username: <<parameters.dockerhub-username>>
+#       extra-build-args: <<parameters.extra-build-args>>
+#       lifecycle-policy-path: <<parameters.lifecycle-policy-path>>
+#       new-profile-name: <<parameters.new-profile-name>>
+#       no-output-timeout: <<parameters.no-output-timeout>>
+#       path: <<parameters.path>>
+#       platform: <<parameters.platform>>
+#       profile-name: <<parameters.profile-name>>
+#       public-registry: <<parameters.public-registry>>
+#       push-image: <<parameters.push-image>>
+#       region: <<parameters.region>>
+#       registry-id: <<parameters.registry-id>>
+#       remote-docker-layer-caching: <<parameters.remote-docker-layer-caching>>
+#       remote-docker-version: <<parameters.remote-docker-version>>
+#       repo: <<parameters.repo>>
+#       repo-scan-on-push: <<parameters.repo-scan-on-push>>
+
+
+
+version: 2.1
+
 orbs:
   aws-ecr: circleci/aws-ecr@6.2.0
+  aws-ecs: circleci/aws-ecs@0.0.11
+
 workflows:
-  build_and_push_image:
+  build-and-deploy:
     jobs:
       - aws-ecr/build-and-push-image:
-          account-url: AWS_ECR_ACCOUNT_URL
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          # aws-cli-version: latest
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          context: myContext
-          create-repo: true
-          dockerfile: Dockerfile
-          executor: aws-ecr/default
-          extra-build-args: '--compress'
-          # new-profile-name: newProfileName
-          # no-output-timeout: 20m
-          path: pathToMyDockerfile
-          # platform: linux/amd64
-          profile-name: myProfileName
-          # public-registry: false
-          # push-image: true
-          region: AWS_DEFAULT_REGION
-          # registry-id: AWS_ECR_REGISTRY_ID
           repo: example
-          # repo-scan-on-push: true
-          # role-arn: 'arn:aws:iam::123456789012:role/testing'
-          # skip-when-tags-exist: false
-          # source-profile: sourceProfileName
-          tag: 'latest,myECRRepoTag'
-
+          tag: latest
