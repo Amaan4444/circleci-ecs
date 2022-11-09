@@ -1,4 +1,4 @@
-version: 2.1
+# version: 2.1
 
 orbs:
   aws-ecr: circleci/aws-ecr@6.2.0
@@ -19,7 +19,7 @@ workflows:
           context: wordpress-test
           create-repo: false
           dockerfile: Dockerfile
-          registry-id: AWS_ECR_REGISTRY_ID
+          # registry-id: AWS_ECR_REGISTRY_ID
           # no-output-timeout: 20m
           path: .
           profile-name: default
