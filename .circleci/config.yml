@@ -142,7 +142,7 @@ workflows:
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           region: AWS_DEFAULT_REGION
           context: wordpress-test
-          registry-id: 292315468855
+          registry-id: AWS_ECR_REGISTRY_ID
           create-repo: false
           dockerfile: Dockerfile
           # no-output-timeout: 20m
