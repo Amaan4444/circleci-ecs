@@ -140,7 +140,7 @@ workflows:
       docker:
       # replace with your preferred image
       - image: cimg/base:stable
-    steps:
+      steps:
       - aws-ecr/build-and-push-image:
           repo: example
           tag: latest
