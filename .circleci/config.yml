@@ -137,11 +137,12 @@ workflows:
           repo: example
           tag: latest
           name: Build and Push Docker Image
-          # account-url: AWS_ECR_ACCOUNT_URL
+          account-url: AWS_ECR_ACCOUNT_URL
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           region: AWS_DEFAULT_REGION
           context: wordpress-test
+          registry-id: 292315468855
           create-repo: false
           dockerfile: Dockerfile
           # no-output-timeout: 20m
